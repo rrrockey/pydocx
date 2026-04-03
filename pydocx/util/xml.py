@@ -24,13 +24,7 @@ def el_iter(el):
     """
     Go through all elements
     """
-    try:
-        for child in el.iter():
-            yield child
-    except AttributeError:
-        # iter isn't available in < python 2.7
-        for child in el.getiterator():
-            yield child
+    yield from el.iter()
 
 
 def xml_remove_namespaces(xml_bytes):
