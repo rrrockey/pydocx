@@ -55,15 +55,13 @@ def parse_xml_from_string(xml, remove_namespaces=False):
 
 
 def convert_dictionary_to_style_fragment(style):
-    items = sorted(style.items())
-    return ';'.join("%s:%s" % item for item in items)
+    return ';'.join(f"{k}:{v}" for k, v in sorted(style.items()))
 
 
 def convert_dictionary_to_html_attributes(attributes):
     return ' '.join(
-        '{k}="{v}"'.format(k=k, v=v)
-        for k, v in
-        sorted(attributes.items())
+        f'{k}="{v}"'
+        for k, v in sorted(attributes.items())
     )
 
 
