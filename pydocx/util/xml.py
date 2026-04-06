@@ -48,16 +48,26 @@ def xml_remove_namespaces(xml_bytes):
     return cElementTree.tostring(root, encoding='utf-8')
 
 
+'''
+This function does the wrapper around ElementTree.fromstring
+remove_namespaces is used for an extra parsing class
+'''
 def parse_xml_from_string(xml, remove_namespaces=False):
     if remove_namespaces:
         xml = xml_remove_namespaces(xml)
     return cElementTree.fromstring(xml)
 
-
+'''
+This function converts python dictionaries to a CSS string.
+Ex: {“color”:”red”} to “color:red”
+'''
 def convert_dictionary_to_style_fragment(style):
     return ';'.join(f"{k}:{v}" for k, v in sorted(style.items()))
 
-
+'''
+This function converts dictionaries to HTML attribute strings
+Ex: {“class”:”btn”} to “class=’btn’”
+'''
 def convert_dictionary_to_html_attributes(attributes):
     return ' '.join(
         f'{k}="{v}"'
